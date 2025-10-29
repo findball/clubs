@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Football Clubs</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #101910;
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      background: #00b34a;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .search-container {
+      padding: 15px;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      width: 90%;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      outline: none;
+      font-size: 16px;
+      background-color: #081108;
+      color: #fff;
+    }
+
+    .club-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .club-card {
+      background: #081108;
+      width: 90%;
+      border-radius: 15px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .club-card:hover {
+      transform: scale(1.03);
+      background: #1c2f63;
+    }
+
+    .club-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: #00b34a;
+    }
+
+    .club-details {
+      font-size: 15px;
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    .manager-section {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid #2e3c69;
+    }
+
+    .manager-section strong {
+      color: #00b34a;
+    }
+
+    a.call-link {
+      color: #87cefa;
+      text-decoration: none;
+    }
+
+    a.call-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (min-width: 600px) {
+      .club-card {
+        width: 60%;
+      }
+      input[type="text"] {
+        width: 60%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>CLUBS</header>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search clubs by name, panchayath, or manager..." onkeyup="searchClubs()">
+  </div>
+
+  <div class="club-list" id="clubList"></div>
+
+  <script>
+    // 🟢 EASY TO EDIT CLUB LIST
+    const clubs = [
+      { 
+        name: 'Ordin FC', 
+        founded: 2021, 
+        panchayath: 'East Kallada', 
+        ground: 'Paigavellil 5s Ground', 
+        manager: 'Sreehari', 
+        phone: '9744436347' 
+      },
+      { 
+        name: 'Orlando FC', 
+        founded: 2019, 
+        panchayath: 'West Kallada', 
+        ground: 'Kallada Turf', 
+        manager: 'Akhil Raj', 
+        phone: '9745678900' 
+      },
+      { 
+        name: 'East FC', 
+        founded: 2020, 
+        panchayath: 'East Kallada', 
+        ground: 'East Sports Arena', 
+        manager: 'Arjun Dev', 
+        phone: '9746556789' 
+      },
+      { 
+        name: 'Kundara United', 
+        founded: 2018, 
+        panchayath: 'Kundara', 
+        ground: 'Kundara Stadium', 
+        manager: 'Nikhil Das', 
+        phone: '9745676543' 
+      },
+      { 
+        name: 'Kundara United', 
+        founded: 2018, 
+        panchayath: 'Kundara', 
+        ground: 'Kundara Stadium', 
+        manager: 'Nikhil Das', 
+        phone: '9745676543' 
+      },
+      { 
+        name: 'Kundara United', 
+        founded: 2018, 
+        panchayath: 'Kundara', 
+        ground: 'Kundara Stadium', 
+        manager: 'Nikhil Das', 
+        phone: '9745676543' 
+      }
+    ];
+
+    // 🧩 FUNCTION TO SHOW CLUBS
+    function displayClubs(list) {
+      const container = document.getElementById("clubList");
+      container.innerHTML = "";
+
+      list.forEach(club => {
+        const card = document.createElement("div");
+        card.classList.add("club-card");
+        card.innerHTML = `
+          <div class="club-name">${club.name}</div>
+          <div class="club-details">
+            <strong>Founded:</strong> ${club.founded}<br>
+            <strong>Panchayath:</strong> ${club.panchayath}<br>
+            <strong>Home Ground:</strong> ${club.ground}
+          </div>
+          <div class="manager-section">
+            <strong>Manager:</strong> ${club.manager}<br>
+            <strong>Manager Number:</strong> <a href="tel:+91${club.phone}" class="call-link">${club.phone}</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // 🔍 SEARCH FUNCTION
+    function searchClubs() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const filtered = clubs.filter(club =>
+        club.name.toLowerCase().includes(query) ||
+        club.panchayath.toLowerCase().includes(query) ||
+        club.manager.toLowerCase().includes(query)
+      );
+      displayClubs(filtered);
+    }
+
+    // INITIAL DISPLAY
+    displayClubs(clubs);
+  </script>
+</body>
+</html>
