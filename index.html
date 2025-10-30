@@ -55,11 +55,27 @@
       margin-bottom: 15px;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
       transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
     .club-card:hover {
       transform: scale(1.03);
       background: #1c2f63;
+    }
+
+    .club-logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #00b34a;
+      flex-shrink: 0;
+    }
+
+    .club-info {
+      flex: 1;
     }
 
     .club-name {
@@ -113,59 +129,47 @@
   <div class="club-list" id="clubList"></div>
 
   <script>
-    // 🟢 EASY TO EDIT CLUB LIST
+    
     const clubs = [
       { 
-        name: 'Ordin FC', 
-        founded: 2021, 
-        panchayath: 'East Kallada', 
-        ground: 'Paigavellil 5s Ground', 
-        manager: 'Sreehari', 
-        phone: '9744436347' 
+        name: 'FC Barcelona', 
+        founded: 1899, 
+        panchayath: 'spain', 
+        ground: 'estadi olimpic lluis', 
+        manager: 'joan laporta', 
+        phone: '9744436347',
+        logo: 'barca.png' 
       },
       { 
-        name: 'Orlando FC', 
-        founded: 2019, 
-        panchayath: 'West Kallada', 
-        ground: 'Kallada Turf', 
-        manager: 'Akhil Raj', 
-        phone: '9745678900' 
+        name: 'FC Barcelona', 
+        founded: 1899, 
+        panchayath: 'spain', 
+        ground: 'estadi olimpic lluis', 
+        manager: 'joan laporta', 
+        phone: '9745678900',
+        logo: 'barca.png'
       },
       { 
-        name: 'East FC', 
-        founded: 2020, 
-        panchayath: 'East Kallada', 
-        ground: 'East Sports Arena', 
-        manager: 'Arjun Dev', 
-        phone: '9746556789' 
+        name: 'FC Barcelona', 
+        founded: 1899, 
+        panchayath: 'spain', 
+        ground: 'estadi olimpic lluis', 
+        manager: 'joan laporta', 
+        phone: '9746556789',
+        logo: 'barca.png'
       },
       { 
-        name: 'Kundara United', 
-        founded: 2018, 
-        panchayath: 'Kundara', 
-        ground: 'Kundara Stadium', 
-        manager: 'Nikhil Das', 
-        phone: '9745676543' 
-      },
-      { 
-        name: 'Kundara United', 
-        founded: 2018, 
-        panchayath: 'Kundara', 
-        ground: 'Kundara Stadium', 
-        manager: 'Nikhil Das', 
-        phone: '9745676543' 
-      },
-      { 
-        name: 'Kundara United', 
-        founded: 2018, 
-        panchayath: 'Kundara', 
-        ground: 'Kundara Stadium', 
-        manager: 'Nikhil Das', 
-        phone: '9745676543' 
+        name: 'FC Barcelona', 
+        founded: 1899, 
+        panchayath: 'spain', 
+        ground: 'estadi olimpic lluis', 
+        manager: 'joan laporta', 
+        phone: '9745676543',
+        logo: 'barca.png'
       }
     ];
 
-    // 🧩 FUNCTION TO SHOW CLUBS
+    
     function displayClubs(list) {
       const container = document.getElementById("clubList");
       container.innerHTML = "";
@@ -174,22 +178,25 @@
         const card = document.createElement("div");
         card.classList.add("club-card");
         card.innerHTML = `
-          <div class="club-name">${club.name}</div>
-          <div class="club-details">
-            <strong>Founded:</strong> ${club.founded}<br>
-            <strong>Panchayath:</strong> ${club.panchayath}<br>
-            <strong>Home Ground:</strong> ${club.ground}
-          </div>
-          <div class="manager-section">
-            <strong>Manager:</strong> ${club.manager}<br>
-            <strong>Manager Number:</strong> <a href="tel:+91${club.phone}" class="call-link">${club.phone}</a>
+          <img src="${club.logo}" alt="${club.name} Logo" class="club-logo">
+          <div class="club-info">
+            <div class="club-name">${club.name}</div>
+            <div class="club-details">
+              <strong>Founded:</strong> ${club.founded}<br>
+              <strong>Panchayath:</strong> ${club.panchayath}<br>
+              <strong>Home Ground:</strong> ${club.ground}
+            </div>
+            <div class="manager-section">
+              <strong>Manager:</strong> ${club.manager}<br>
+              <strong>Manager Number:</strong> <a href="tel:+91${club.phone}" class="call-link">${club.phone}</a>
+            </div>
           </div>
         `;
         container.appendChild(card);
       });
     }
 
-    // 🔍 SEARCH FUNCTION
+    
     function searchClubs() {
       const query = document.getElementById("searchInput").value.toLowerCase();
       const filtered = clubs.filter(club =>
@@ -200,7 +207,7 @@
       displayClubs(filtered);
     }
 
-    // INITIAL DISPLAY
+    
     displayClubs(clubs);
   </script>
 </body>
